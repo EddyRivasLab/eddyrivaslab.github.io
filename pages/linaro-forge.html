@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="A cast of tens">
 
-    <title>Eddy and Rivas Labs Resource Page</title>
+    <title>Using Linaro Forge on the RC Machines | Eddy and Rivas Labs Resource Page</title>
 
+    <link rel="canonical" href="https://eddyrivaslab.github.io/pages/linaro-forge.html">
 
     <link href="/theme/css/tufte.css" rel="stylesheet">
     <link href="/theme/css/latex.css" rel="stylesheet">
@@ -87,25 +88,22 @@
             <nav class="bottom-group">
             </nav>
         </header>
+        <article>
+        <h1>Using Linaro Forge on the RC Machines</h1>
 
+        <p>Linaro Forge is a debugger and performance-analysis tool that is mostly designed for multi-threaded and multi-machine (MPI) programs, but is also somewhat better than text-mode debuggers (in Nick's humble opinion) on sequential programs. I (Nick)
+have only used it for C programs, but I believe it can be used for Python applications.</p>
+<p>The debugger consists of two programs: A front-end that runs on your local machine (your laptop or desktop) and provides a GUI interface, and the debugger itself, which runs on a remote machine, such as one of the RC computers.  If your local machine is a Linux box, you can also run the debugger directly on it.</p>
+<h2>Installing the Front-end</h2>
+<p>The first step in using Forge is setting up the front-end on your local machine.  Download the appropriate file for your machine https://www.linaroforge.com/download-documentation/ and follow the install instructions.  If your local machine is a Mac or Windows box, this will only install the front-end.  If your local machine runs Linux, this will install the full debugger, and you'll need a license file to tell the debugger how to contact the license server so that it can run.  Ask Nick C. for this, as it's not something we want publicly available.</p>
+<p>Once you've installed the front-end, you're ready to connect to the debugger itself on one of the RC machines.</p>
+<h2>Connecting to an RC Machine</h2>
+<p>In order to connect to an RC machine, you'll need a login session running on one of the -p eddy machines.  SSH to one of the RC login nodes, and use salloc to request a session on one of our machines.  Keep track of the particular machine you're running the session on.  You will also need to set up an SSH public-key/private-key pair on the RC systems so that you can SSH from one of the login nodes to one of our machines without entering a password.</p>
+<p>Then, start the Linaro Forge front-end.  You'll get a window that has five options: run, attach, open core, manual launch, and remote launch.  Click the configure box under remote launch to set up the connection to the RC machine.  That will bring up another window with several fields.  The three you need to fill in are "Connection name", which can be anything you want, "Remote Installation Directory", which should be "/n/eddy_lab/software/linaro/forge/24.1", and "Host Name", which should be something like "rclogin.rc.fas.harvard.edu the-machine-you-have-a-session-on.rc.fas.harvard.edu".  (omit the quotation marks in all fields) You also need to click the "Proxy through login node" checkbox towards the bottom of the window.  All of this tells Forge that it needs to ssh to one of the RC login nodes and then from there to one of the </p>
+<p>Once you've done this, click the "test remote launch" button.  That will bring up another window.  Click the "show terminal" button and enter your RC password and two-factor authentication code.  The tool should then continue and give you a message that the test succeeded.  If it fails, check all the items in the Remote Launch Settings window, and pester Nick C. if you still have problems.</p>
+<p>Now, you're ready to actually run the tool.  Select the remote launch configuration you just created from the Remote Launch menu, and it should connect through and start Forge on the RC node.  Then, click "Run" to start the debugger, fill out the fields on the window that comes up appropriately, and you're ready to start debugging.</p>
 
-        <body>
-
-              <p>This website is a repository of tips and HOWTOs assembled by the members of the Eddy and Rivas Labs at Harvard.  It is not a good place to find documentation on our labs' software packages.  For that, please see the documentation PDFs and man pages that are included with each package.</p>
-
-              <h2>Available HOWTOs</h2>
-              <ul>
-                  <li><a href="https://eddyrivaslab.github.io/pages/cluster-computing-in-the-eddy-and-rivas-labs.html">Eddy and Rivas Lab Cluster Resources and How to Access Them</a></li>
-                  <li><a href="https://eddyrivaslab.github.io/pages/leaving-the-lab.html">Leaving the Lab</a></li>
-                  <li><a href="https://eddyrivaslab.github.io/pages/linaro-forge.html">Using Linaro Forge on the RC Machines</a></li>
-                  <li><a href="https://eddyrivaslab.github.io/pages/modifying-this-website.html">Modifying This Website</a></li>
-                  <li><a href="https://eddyrivaslab.github.io/pages/my-jobs-arent-running.html">My Jobs Aren't Running</a></li>
-                  <li><a href="https://eddyrivaslab.github.io/pages/running-jobs-on-our-cluster.html">Running Jobs on Our RC Machines</a></li>
-                  <li><a href="https://eddyrivaslab.github.io/pages/using-job-arrays.html">Using Job Arrays</a></li>
-              </ul>
-        </body>
-
-
+        </article>
         <footer>Powered by <a href="https://getpelican.com/">Pelican</a>.  Site theme is a modified version of <a href="https://github.com/andrewheiss/ath-tufte-pelican">ath-tufte-pelican</a>.</footer>
     </div>
     </body>
